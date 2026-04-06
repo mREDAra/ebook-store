@@ -9,13 +9,19 @@ export async function POST(req: NextRequest) {
     const isGolden = edition !== 'standard';
 
     if (!buyerName || !buyerEmail) {
-      return NextResponse.json({ error: 'Name and email are required' }, { status: 400 });
+      const errorMsg = language === 'ar' 
+        ? 'حقل الاسم والبريد الإلكتروني مطلوبان' 
+        : 'Name and email are required';
+      return NextResponse.json({ error: errorMsg }, { status: 400 });
     }
 
     // Enforce English-only name to ensure proper PDF rendering
     const ENGLISH_NAME_REGEX = /^[A-Za-z\s'.\-]+$/;
     if (!ENGLISH_NAME_REGEX.test(buyerName)) {
-      return NextResponse.json({ error: 'Name must be in English letters only (A-Z)' }, { status: 400 });
+      const errorMsg = language === 'ar'
+        ? 'يجب أن يكون الاسم مكتوباً بالأحرف الإنجليزية فقط (A-Z).'
+        : 'Name must be in English letters only (A-Z).';
+      return NextResponse.json({ error: errorMsg }, { status: 400 });
     }
 
     const adminSupabase = getSupabaseAdmin();
