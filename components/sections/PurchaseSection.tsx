@@ -1,9 +1,12 @@
 'use client';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useTranslation } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { Lock, Zap, Sparkles } from 'lucide-react';
+import { Lock, Zap, Sparkles, AlertCircle } from 'lucide-react';
+
+// Only allows Latin letters, spaces, hyphens, apostrophes, and periods
+const ENGLISH_NAME_REGEX = /^[A-Za-z\s'.\-]+$/;
 
 export function PurchaseSection() {
   const { t } = useTranslation();
@@ -11,13 +14,31 @@ export function PurchaseSection() {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [nameError, setNameError] = useState('');
   const [edition, setEdition] = useState<'golden' | 'standard'>('golden');
 
   const currentPrice = edition === 'golden' ? t.purchase.goldenPrice : t.purchase.standardPrice;
 
+  const handleNameChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setName(value);
+    if (value && !ENGLISH_NAME_REGEX.test(value)) {
+      setNameError(t.purchase.nameErrorNotEnglish);
+    } else {
+      setNameError('');
+    }
+  }, [t]);
+
+  const isNameValid = name.length >= 2 && ENGLISH_NAME_REGEX.test(name);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (name.length < 2 || !email.includes('@')) return;
+    if (!isNameValid || !email.includes('@')) {
+      if (!isNameValid && name.length > 0) {
+        setNameError(t.purchase.nameErrorNotEnglish);
+      }
+      return;
+    }
     setLoading(true);
     
     try {
@@ -108,10 +129,19 @@ export function PurchaseSection() {
                    type="text" 
                    required minLength={2}
                    placeholder={t.purchase.namePlaceholder} 
-                   value={name} onChange={e => setName(e.target.value)}
-                   className="h-14 bg-white"
+                   value={name} onChange={handleNameChange}
+                   className={`h-14 bg-white ${nameError ? 'border-red-500 ring-red-500/20 ring-2' : ''}`}
+                   dir="ltr"
+                   style={{ textAlign: 'left' }}
                  />
-                 <p className="text-xs text-text-muted px-2">{t.purchase.nameHelp}</p>
+                 {nameError ? (
+                   <div className="flex items-center gap-1.5 text-xs text-red-500 px-2 font-medium">
+                     <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
+                     <span>{nameError}</span>
+                   </div>
+                 ) : (
+                   <p className="text-xs text-text-muted px-2">{t.purchase.nameHelp}</p>
+                 )}
                </div>
                
                <div className="space-y-2">
@@ -133,7 +163,7 @@ export function PurchaseSection() {
                <Button 
                  type="submit" 
                  size="lg" 
-                 disabled={loading}
+                 disabled={loading || !isNameValid}
                  className="w-full h-16 text-xl shadow-lg"
                >
                  {loading ? '...' : `${t.purchase.ctaButton} — ${currentPrice}`}

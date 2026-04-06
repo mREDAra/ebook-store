@@ -88,6 +88,7 @@ export const en = {
     instant: 'Instant PDF delivery',
     personalized: 'Named copy',
     nameHelp: 'Your name will appear on the copyright page inside the book',
+    nameErrorNotEnglish: 'Please enter your name using English letters only (A-Z) to ensure it prints correctly on the book',
   },
 
   faq: {

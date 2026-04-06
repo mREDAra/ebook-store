@@ -12,6 +12,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Name and email are required' }, { status: 400 });
     }
 
+    // Enforce English-only name to ensure proper PDF rendering
+    const ENGLISH_NAME_REGEX = /^[A-Za-z\s'.\-]+$/;
+    if (!ENGLISH_NAME_REGEX.test(buyerName)) {
+      return NextResponse.json({ error: 'Name must be in English letters only (A-Z)' }, { status: 400 });
+    }
+
     const adminSupabase = getSupabaseAdmin();
     
     // We are simulating an immediate PAYMENT SUCCESS for now.
