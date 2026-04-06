@@ -22,6 +22,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://alwaysyouarebeautiful.com'), // Replace with actual domain later
   title: 'كيف تكوني جميلة في عيون الآخرين — النسخة الذهبية',
   description: 'كتاب إلكتروني شامل للمرأة العربية: أسرار الجمال، العناية بالبشرة والشعر، الثقة بالنفس، والأناقة. ١٦ فصلاً من النصائح العملية. تأليف نورة محمد النجار.',
   keywords: ['كتاب جمال', 'عناية بالبشرة', 'ثقة بالنفس', 'أناقة المرأة', 'كتاب إلكتروني عربي', 'نورة النجار'],

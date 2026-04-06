@@ -13,10 +13,12 @@ export function AboutBook() {
             <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl relative">
                <div className="absolute inset-0 bg-gradient-to-tr from-[#2D2A26] to-[#1A1A1A]"></div>
                <div className="absolute inset-0 border-[8px] border-surface/10 rounded-2xl pointer-events-none"></div>
-               <div className="absolute inset-0 flex flex-col p-8 justify-center items-center text-center text-white/60 font-arabic italic text-xl md:text-2xl leading-relaxed mix-blend-overlay">
-                  <div className="text-4xl mb-6">🌿</div>
-                  <p className="mb-8">"الجمال يبدأ من اللحظة التي تقررين فيها أن تكوني نفسك."</p>
-                  <p>"الأنوثة قوة خفية، وأناقة بلا تكلف."</p>
+               <div className="absolute inset-0 flex flex-col p-8 justify-center items-center text-center font-arabic italic text-xl md:text-2xl leading-relaxed">
+                  <div className="w-12 h-1 bg-gold/30 mb-8 rounded-full hidden md:block"></div>
+                  <div className="text-4xl mb-6 opacity-80">🌿</div>
+                  <p className="mb-8 text-white/95 drop-shadow-md">&quot;{t.about.quote1}&quot;</p>
+                  <p className="text-gold-light drop-shadow-md">&quot;{t.about.quote2}&quot;</p>
+                  <div className="w-12 h-1 bg-gold/30 mt-8 rounded-full hidden md:block"></div>
                </div>
             </div>
             {/* Decorative blob */}
@@ -34,7 +36,7 @@ export function AboutBook() {
             
             <div className="mt-8 p-6 bg-cream border-s-4 border-gold rounded-e-2xl shadow-sm">
               <p className="text-xl font-bold text-text-primary italic font-heading">
-                "{t.about.highlight}"
+                &quot;{t.about.highlight}&quot;
               </p>
             </div>
           </div>

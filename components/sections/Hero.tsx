@@ -26,9 +26,9 @@ export function Hero() {
               <Badge variant="outline" className="mb-4">
                 ✨ {t.hero.badge}
               </Badge>
-              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold font-heading text-text-primary leading-[1.2]">
-                {t.hero.title} <br />
-                <span className="bg-gradient-to-r from-gold to-gold-dark bg-clip-text text-transparent">
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold font-heading text-text-primary leading-tight lg:leading-tight">
+                <span className="block pb-1">{t.hero.title}</span>
+                <span className="bg-gradient-to-r from-gold to-gold-dark bg-clip-text text-transparent block pt-2 pb-4 pe-2">
                   {t.hero.titleHighlight}
                 </span>
               </h1>
@@ -46,16 +46,12 @@ export function Hero() {
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-start gap-4 pt-4">
+            <div className="flex pt-4">
               <a href="#purchase" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full sm:w-auto text-lg">
+                <Button size="lg" className="w-full sm:w-auto text-lg px-10">
                   {t.hero.cta}
                 </Button>
               </a>
-              <div className="flex flex-col items-center sm:items-start text-sm">
-                <span className="font-bold text-2xl text-text-primary">{t.hero.price}</span>
-                <span className="text-text-muted">{t.hero.priceBadge}</span>
-              </div>
             </div>
           </div>
 

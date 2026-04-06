@@ -14,15 +14,17 @@ export const en = {
     badge: 'The Golden Edition',
     title: 'How to Be Beautiful',
     titleHighlight: "in Others' Eyes",
-    subtitle: 'A complete guide for every woman — from skincare and haircare to self-confidence and elegance. 16 chapters of practical secrets and tips.',
+    subtitle: 'A complete guide for every woman — from skincare and haircare to self-confidence and elegance, 16 chapters of practical secrets and tips.',
     cta: 'Buy Your Copy Now',
     price: '$9.99',
     priceBadge: 'Digital PDF Ebook',
-    features: ['46 Pages', 'Personalized with Your Name', 'Instant Delivery'],
+    features: ['46 Pages', 'Personalized with Your Name', 'Instant PDF Delivery'],
   },
 
   about: {
     sectionTitle: 'About the Book',
+    quote1: 'Beauty begins the moment you decide to be yourself.',
+    quote2: 'Femininity is a hidden power, and elegance without pretense.',
     paragraph1: "In a world that changes every day, women face tremendous challenges. Society's pressures, media expectations, and family standards create a distorted image of beauty.",
     paragraph2: "This book is not just tips — it's a complete reference for every woman. Whether you're in the bloom of youth or the richness of experience. Married, divorced, widowed, single, or a mother.",
     paragraph3: "Here you'll find practical, honest, and realistic steps... from your toes to your hair, and from your voice to your heart.",
@@ -71,12 +73,19 @@ export const en = {
   purchase: {
     sectionTitle: 'Buy Your Copy Now',
     subtitle: 'Get your personalized copy of The Golden Edition',
+    editionSelector: 'Choose your edition',
+    standardEdition: 'Standard Edition',
+    standardDesc: 'Black & White',
+    goldenEdition: 'Golden Edition',
+    goldenDesc: 'Full Color',
+    standardPrice: '$4.99',
+    goldenPrice: '$9.99',
     namePlaceholder: 'Your full name (will be printed on the book)',
     emailPlaceholder: 'Your email address',
     ctaButton: 'Buy Now',
     price: '$9.99',
     secure: 'Secure & encrypted payment',
-    instant: 'Instant delivery',
+    instant: 'Instant PDF delivery',
     personalized: 'Named copy',
     nameHelp: 'Your name will appear on the copyright page inside the book',
   },
@@ -86,7 +95,7 @@ export const en = {
     items: [
       {
         q: 'How will I receive the book?',
-        a: "After completing payment, you'll receive an email with a download link for your personalized book. The link is valid for 72 hours and 3 downloads.",
+        a: "After completing payment, you'll receive an email with a download link for your personalized book.",
       },
       {
         q: 'Can I read the book on my phone?',
@@ -94,7 +103,7 @@ export const en = {
       },
       {
         q: 'What does "personalized copy" mean?',
-        a: 'Each copy is created specifically for you, with your name added to the copyright page inside the book. This makes your copy unique and special.',
+        a: 'Each copy is created specifically for you, with your name added inside the book. This makes your copy unique and special.',
       },
       {
         q: "What if I don't receive the email?",
@@ -102,11 +111,11 @@ export const en = {
       },
       {
         q: 'What payment methods are accepted?',
-        a: 'We accept credit cards (Visa, Mastercard, mada) and Apple Pay through ClickPay, a secure and encrypted payment gateway.',
+        a: 'We accept credit cards (Visa, Mastercard, mada, Apple Pay, Google Pay) via a secure and encrypted payment gateway.',
       },
       {
         q: 'Can I get a refund?',
-        a: 'Since this is a digital product delivered instantly, refunds are not available after download. However, we guarantee the quality of the content.',
+        a: 'Since this is a digital product delivered instantly, refunds are not available after purchase. However, we guarantee the quality of the content.',
       },
     ],
   },

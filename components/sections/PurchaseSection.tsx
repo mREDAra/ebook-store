@@ -11,17 +11,32 @@ export function PurchaseSection() {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [edition, setEdition] = useState<'golden' | 'standard'>('golden');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const currentPrice = edition === 'golden' ? t.purchase.goldenPrice : t.purchase.standardPrice;
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (name.length < 2 || !email.includes('@')) return;
     setLoading(true);
     
-    // Simulate API call for now
-    setTimeout(() => {
+    try {
+      const res = await fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ buyerName: name, buyerEmail: email, language: t.lang, edition })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        window.location.href = data.redirect_url;
+      } else {
+        setMessage(data.error || 'Failed to complete order. Please try again.');
+        setLoading(false);
+      }
+    } catch (err) {
+      setMessage('Network error. Please try again.');
       setLoading(false);
-      setMessage(t.lang === 'ar' ? 'سيتم تفعيل الدفع قريباً' : 'Payment integration coming soon');
-    }, 1000);
+    }
   };
 
   return (
@@ -34,7 +49,9 @@ export function PurchaseSection() {
               {t.purchase.sectionTitle}
             </h2>
             <p className="text-lg md:text-xl text-white/80 font-body">
-              {t.purchase.subtitle}
+              {edition === 'golden' 
+                ? (t.lang === 'ar' ? 'احصلي على نسختك الملونة بالكامل من النسخة الذهبية' : 'Get your full color Golden Edition')
+                : (t.lang === 'ar' ? 'احصلي على نسختك الخاصة بالأبيض والأسود' : 'Get your Black & White Standard Edition')}
             </p>
             
             <div className="pt-8 space-y-4 text-start">
@@ -49,16 +66,43 @@ export function PurchaseSection() {
             </div>
           </div>
 
-          <div className="bg-surface p-8 md:p-10 rounded-3xl shadow-2xl relative text-text-primary text-start">
-             <div className="absolute -top-4 -end-4 bg-error text-white text-sm font-bold px-4 py-2 rounded-full shadow-lg transform rotate-12">
-               {t.hero.badge}
+          <div className="bg-surface p-8 md:p-10 rounded-3xl shadow-2xl relative text-text-primary text-start transition-all duration-300 border-2 border-transparent" style={{ borderColor: edition === 'golden' ? 'rgba(212, 175, 55, 0.2)' : 'transparent' }}>
+             <div className={`absolute -top-4 -end-4 text-white text-sm font-bold px-5 py-2 rounded-full shadow-lg transform rotate-12 transition-all duration-300 ${edition === 'golden' ? 'bg-gold ring-2 ring-gold/20' : 'bg-black ring-2 ring-black/20'}`}>
+               {edition === 'golden' ? t.purchase.goldenEdition : t.purchase.standardEdition}
              </div>
              
              <div className="text-center mb-8">
-               <span className="text-5xl font-bold text-gold-dark block mb-2">{t.purchase.price}</span>
+               <span className="text-5xl font-bold text-gold-dark block mb-2 transition-all duration-300">{currentPrice}</span>
+               <span className="text-sm font-medium text-text-muted bg-cream px-3 py-1 rounded-full inline-block">
+                 {edition === 'golden' ? t.purchase.goldenDesc : t.purchase.standardDesc}
+               </span>
              </div>
 
              <form onSubmit={handleSubmit} className="space-y-6">
+               <div className="space-y-3 pb-2 text-sm font-medium">
+                 <p className="text-text-muted px-2">{t.purchase.editionSelector}</p>
+                 <div className="grid grid-cols-2 gap-3">
+                    <button 
+                      type="button"
+                      onClick={() => setEdition('standard')}
+                      className={`flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all duration-300 ${edition === 'standard' ? 'border-gold bg-gold/5 shadow-sm scale-[1.02]' : 'border-border bg-white text-text-secondary hover:border-gold/30'}`}
+                    >
+                      <span className={`block font-bold mb-1 ${edition === 'standard' ? 'text-text-primary' : 'text-text-primary'}`}>{t.purchase.standardEdition}</span>
+                      <span className="text-xs text-text-muted mb-2 font-arabic bg-surface-dark px-2 rounded-full">{t.purchase.standardDesc}</span>
+                      <span className={`font-bold text-lg ${edition === 'standard' ? 'text-gold-dark' : 'text-text-secondary'}`}>{t.purchase.standardPrice}</span>
+                    </button>
+                    <button 
+                      type="button"
+                      onClick={() => setEdition('golden')}
+                      className={`flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all duration-300 ${edition === 'golden' ? 'border-gold bg-gold/5 shadow-sm scale-[1.02]' : 'border-border bg-white text-text-secondary hover:border-gold/30'}`}
+                    >
+                      <span className={`block font-bold mb-1 ${edition === 'golden' ? 'text-text-primary' : 'text-text-primary'}`}>{t.purchase.goldenEdition}</span>
+                      <span className="text-xs text-gold-dark mb-2 font-arabic bg-gold/10 px-2 rounded-full">{t.purchase.goldenDesc}</span>
+                      <span className={`font-bold text-lg ${edition === 'golden' ? 'text-gold-dark' : 'text-text-secondary'}`}>{t.purchase.goldenPrice}</span>
+                    </button>
+                 </div>
+               </div>
+
                <div className="space-y-2">
                  <Input 
                    type="text" 
@@ -92,7 +136,7 @@ export function PurchaseSection() {
                  disabled={loading}
                  className="w-full h-16 text-xl shadow-lg"
                >
-                 {loading ? '...' : `${t.purchase.ctaButton} — ${t.purchase.price}`}
+                 {loading ? '...' : `${t.purchase.ctaButton} — ${currentPrice}`}
                </Button>
                
                <div className="flex justify-center items-center gap-2 text-success text-sm font-medium pt-2 text-center">

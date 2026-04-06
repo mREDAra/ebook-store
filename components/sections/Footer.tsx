@@ -1,6 +1,8 @@
 'use client';
 import { useTranslation } from '@/context/LanguageContext';
 
+import Link from 'next/link';
+
 export function Footer() {
   const { t } = useTranslation();
 
@@ -12,9 +14,9 @@ export function Footer() {
         </h3>
         
         <div className="flex flex-wrap items-center justify-center gap-6 text-sm font-body">
-          <a href="#" className="hover:text-gold transition-colors">{t.footer.privacy}</a>
+          <Link href="/privacy" className="hover:text-gold transition-colors">{t.footer.privacy}</Link>
           <span className="w-1 h-1 rounded-full bg-white/20"></span>
-          <a href="#" className="hover:text-gold transition-colors">{t.footer.terms}</a>
+          <Link href="/terms" className="hover:text-gold transition-colors">{t.footer.terms}</Link>
           <span className="w-1 h-1 rounded-full bg-white/20"></span>
           <a href={`mailto:alwaysyouarebeautiful@gmail.com`} className="hover:text-gold transition-colors">{t.footer.contact}</a>
         </div>

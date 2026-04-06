@@ -1,10 +1,17 @@
 'use client';
 import { useTranslation } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/Button';
-import { Check } from 'lucide-react';
+import { Check, Download } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export default function ThankYouPage() {
   const { t } = useTranslation();
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setToken(params.get('token'));
+  }, []);
 
   return (
     <div className="min-h-screen bg-surface flex items-center justify-center p-4">
@@ -24,8 +31,17 @@ export default function ThankYouPage() {
           {t.thankYou.message}
         </p>
         
+        {token && (
+          <a href={`/download?token=${token}`}>
+            <Button size="lg" className="w-full mb-4">
+              <Download className="w-5 h-5 me-2" />
+              {t.download.button}
+            </Button>
+          </a>
+        )}
+
         <a href="/">
-          <Button size="lg" className="w-full">
+          <Button variant="outline" size="lg" className="w-full">
             {t.thankYou.backHome}
           </Button>
         </a>

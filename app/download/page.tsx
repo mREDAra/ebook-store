@@ -7,19 +7,18 @@ import { useEffect, useState } from 'react';
 export default function DownloadPage() {
   const { t } = useTranslation();
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simulate token check
     const params = new URLSearchParams(window.location.search);
-    const token = params.get('token');
+    const urlToken = params.get('token');
     
-    setTimeout(() => {
-      if (token) {
-        setStatus('ready');
-      } else {
-        setStatus('error');
-      }
-    }, 2000);
+    if (urlToken) {
+      setToken(urlToken);
+      setStatus('ready');
+    } else {
+      setStatus('error');
+    }
   }, []);
 
   return (
@@ -35,7 +34,7 @@ export default function DownloadPage() {
           </div>
         )}
 
-        {status === 'ready' && (
+        {status === 'ready' && token && (
           <div className="space-y-6 animate-fade-in-up">
             <div className="w-20 h-20 bg-gold/10 rounded-full flex items-center justify-center mx-auto border-[6px] border-gold/5 shadow-inner">
               <Download className="w-10 h-10 text-gold-dark" />
@@ -46,11 +45,7 @@ export default function DownloadPage() {
             </h1>
             
             <a 
-              href="#" 
-              onClick={(e) => {
-                e.preventDefault();
-                alert('Download endpoint integrated in Phase 2');
-              }}>
+              href={`/api/download?token=${token}`}>
               <Button size="lg" className="w-full mt-4 h-16 text-xl shadow-lg">
                 {t.download.button}
               </Button>
