@@ -3,6 +3,9 @@ const nextConfig = {
   images: {
     domains: [], 
   },
+  outputFileTracingIncludes: {
+    '/api/create-checkout': ['./private/**/*'],
+  },
 };
 
 module.exports = nextConfig;
