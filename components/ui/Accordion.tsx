@@ -37,9 +37,10 @@ export function Accordion({ items }: { items: { q: string; a: string }[] }) {
               )}
             >
               <div className="overflow-hidden">
-                <div className="p-5 pt-0 text-text-secondary leading-relaxed border-t border-border/50 border-s-4 border-s-gold/50 bg-surface/30">
-                  {item.a}
-                </div>
+                <div 
+                  className="p-5 pt-0 text-text-secondary leading-relaxed border-t border-border/50 border-s-4 border-s-gold/50 bg-surface/30"
+                  dangerouslySetInnerHTML={{ __html: item.a }}
+                />
               </div>
             </div>
           </div>

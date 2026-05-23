@@ -1,10 +1,8 @@
 'use client';
 import { useTranslation } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
 import { BookMockup } from '@/components/BookMockup';
 import { LanguageToggle } from '@/components/LanguageToggle';
-import { Check } from 'lucide-react';
 
 export function Hero() {
   const { t } = useTranslation();
@@ -23,30 +21,18 @@ export function Hero() {
           
           <div className="text-start space-y-8 animate-fade-in-up">
             <div className="space-y-4">
-              <Badge variant="outline" className="mb-4">
-                ✨ {t.hero.badge}
-              </Badge>
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold font-heading text-text-primary leading-tight lg:leading-tight">
+                <span className="block text-gold-dark mb-2">
+                  {t.hero.bookLabel}
+                </span>
                 <span className="block pb-1">{t.hero.title}</span>
                 <span className="bg-gradient-to-r from-gold to-gold-dark bg-clip-text text-transparent block pt-2 pb-4 pe-2">
                   {t.hero.titleHighlight}
                 </span>
               </h1>
-              <p className="text-lg lg:text-xl text-text-secondary leading-relaxed max-w-2xl font-body">
-                {t.hero.subtitle}
-              </p>
             </div>
 
-            <div className="flex flex-wrap gap-4 items-center">
-              {t.hero.features.map((feature, i) => (
-                <div key={i} className="flex items-center text-sm font-medium text-text-secondary bg-surface-dark px-3 py-1.5 rounded-full">
-                  <Check className="w-4 h-4 text-success me-2" />
-                  {feature}
-                </div>
-              ))}
-            </div>
-
-            <div className="flex pt-4">
+            <div className="hidden lg:flex pt-4">
               <a href="#purchase" className="w-full sm:w-auto">
                 <Button size="lg" className="w-full sm:w-auto text-lg px-10">
                   {t.hero.cta}
@@ -57,6 +43,14 @@ export function Hero() {
 
           <div className="flex justify-center items-center lg:justify-end animate-float">
             <BookMockup />
+          </div>
+
+          <div className="flex lg:hidden pt-4 w-full animate-fade-in-up justify-center">
+            <a href="#purchase" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto text-lg px-10">
+                {t.hero.cta}
+              </Button>
+            </a>
           </div>
 
         </div>

@@ -21,7 +21,7 @@ export function Features() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {t.features.items.map((feature, i) => (
             <div key={i} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-border hover:border-gold/30 text-center flex flex-col items-center group">
               <div className="w-16 h-16 rounded-full bg-cream flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">

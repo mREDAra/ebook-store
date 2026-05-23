@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
         buyer_name: buyerName,
         buyer_email: buyerEmail,
         language: language || 'ar',
-        amount: isGolden ? 9.99 : 4.99,
+        amount: isGolden ? 17.99 : 11.99,
         currency: 'USD',
         payment_status: 'paid', // Simulating successful payment
         delivery_status: 'generating'

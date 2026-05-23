@@ -64,7 +64,7 @@ export default function RootLayout({
     "inLanguage": "ar",
     "offers": {
       "@type": "Offer",
-      "price": "9.99",
+      "price": "17.99",
       "priceCurrency": "USD",
       "availability": "https://schema.org/InStock"
     }
