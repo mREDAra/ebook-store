@@ -33,8 +33,8 @@ export function Hero() {
             </div>
 
             <div className="hidden lg:flex pt-4">
-              <a href="#purchase" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full sm:w-auto text-lg px-10">
+              <a href="#purchase" className="w-auto">
+                <Button size="lg" className="text-lg px-10">
                   {t.hero.cta}
                 </Button>
               </a>
@@ -46,8 +46,8 @@ export function Hero() {
           </div>
 
           <div className="flex lg:hidden pt-4 w-full animate-fade-in-up justify-center">
-            <a href="#purchase" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto text-lg px-10">
+            <a href="#purchase" className="w-auto">
+              <Button size="lg" className="text-lg px-10">
                 {t.hero.cta}
               </Button>
             </a>
