@@ -33,12 +33,15 @@ export async function generatePersonalizedPDF(
   const pages = pdfDoc.getPages();
   console.log('[PDF] Total pages to personalize:', pages.length);
 
-  // 6. Draw the personalization text on every page (English only)
+  // 6. Draw the personalization text on every page EXCEPT the first (English only)
   const personalText = `Licensed to: ${buyerName}`;
   const emailText = `Email: ${buyerEmail}`;
 
+  // Golden edition → name in gold, Silver edition → name in same gray as email
+  const nameColor = isGolden ? rgb(0.83, 0.66, 0.26) : rgb(0.5, 0.5, 0.5);
+
   try {
-    for (let i = 0; i < pages.length; i++) {
+    for (let i = 1; i < pages.length; i++) { // Start from 1 to skip first page
       const page = pages[i];
       const { width } = page.getSize();
 
@@ -49,7 +52,7 @@ export async function generatePersonalizedPDF(
         y: 50,
         size: 14,
         font: font,
-        color: rgb(0.83, 0.66, 0.26), // Gold color
+        color: nameColor,
       });
 
       // Draw email
@@ -62,7 +65,7 @@ export async function generatePersonalizedPDF(
         color: rgb(0.5, 0.5, 0.5),
       });
     }
-    console.log('[PDF] Personalization stamped on all', pages.length, 'pages');
+    console.log('[PDF] Personalization stamped on', pages.length - 1, 'pages (skipped first page)');
   } catch (drawError) {
     console.error('[PDF] Error drawing text:', drawError);
   }
