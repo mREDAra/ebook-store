@@ -80,8 +80,8 @@ export const en = {
     goldenDesc: 'Vibrant Full Color',
     standardPrice: '$11.99',
     goldenPrice: '$17.99',
-    goldenFeatures: 'Stunning Full-Color pages • Gold-Embossed personalized name • High-resolution design',
-    standardFeatures: 'Elegant Black & White design • Personalized name printing • Clean high-resolution pages',
+    goldenFeatures: 'Vivid Full-Color pages • Beautiful imagery throughout • Gold-printed personalized name • Premium quality',
+    standardFeatures: 'Elegant Black & White design • Personalized name printing • High quality',
     formTitle: 'Complete Your Order Below',
     namePlaceholder: 'Enter your name (to be printed custom in the book)',
     emailPlaceholder: 'Enter your email address',
@@ -90,7 +90,7 @@ export const en = {
     secure: '100% Secure & Encrypted Checkout',
     instant: 'Instant PDF Download',
     personalized: 'Personalized with Your Name',
-    nameHelp: 'Your name will be elegantly embedded onto the opening page of your book.',
+    nameHelp: 'Your name and email will appear on every page of the book.',
     nameErrorNotEnglish: 'Please enter your name in English characters only (A-Z) to ensure perfect printing.',
   },
 
@@ -119,7 +119,7 @@ export const en = {
       },
       {
         q: 'Can I pay without using a traditional credit card?',
-        a: 'Yes! We support multiple local payment methods. Please <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class="text-green-600 font-semibold hover:underline">message us on WhatsApp</a> and we will guide you through alternative options.',
+        a: 'Yes! We support multiple local payment methods. Please <a href="https://wa.me/00966572047050" target="_blank" rel="noopener noreferrer" class="text-green-600 font-semibold hover:underline">message us on WhatsApp</a> and we will guide you through alternative options.',
       },
     ],
   },

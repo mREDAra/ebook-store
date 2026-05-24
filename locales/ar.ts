@@ -80,7 +80,7 @@ export const ar = {
     goldenDesc: 'ملونة بالكامل',
     standardPrice: '$11.99',
     goldenPrice: '$17.99',
-    goldenFeatures: 'ملونة بالكامل • طباعة الاسم بالذهب • جودة فائقة',
+    goldenFeatures: 'ملونة بالكامل • تحتوي صور جمالية • طباعة الاسم باللون الذهبي • جودة فائقة',
     standardFeatures: 'أبيض وأسود أنيق • طباعة الاسم • جودة عالية',
     formTitle: 'أدخلي بياناتك لإتمام الطلب',
     namePlaceholder: 'Your full name in English (سيُطبع على الكتاب)',
@@ -90,7 +90,7 @@ export const ar = {
     secure: 'دفع آمن ومشفّر',
     instant: 'إرسال PDF فوري',
     personalized: 'نسخة باسمك',
-    nameHelp: 'يُرجى كتابة اسمك بالإنجليزية — سيظهر على صفحة حقوق الملكية داخل الكتاب',
+    nameHelp: 'يُرجى كتابة اسمك بالإنجليزية — سيظهر اسمك وبريدك الإلكتروني على جميع صفحات الكتاب',
     nameErrorNotEnglish: 'يُرجى كتابة الاسم بالأحرف الإنجليزية فقط (A-Z) لضمان طباعته بشكل صحيح على الكتاب',
   },
 
@@ -119,7 +119,7 @@ export const ar = {
       },
       {
         q: 'كيف يمكنني الشراء بدون بطاقة بنكية؟',
-        a: 'يمكنك الشراء بوسائل الدفع المحلية عبر <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class="text-green-600 font-bold hover:underline">تواصل معنا</a>.',
+        a: 'يمكنك الشراء بوسائل الدفع المحلية عبر <a href="https://wa.me/00966572047050" target="_blank" rel="noopener noreferrer" class="text-green-600 font-bold hover:underline">تواصل معنا</a>.',
       },
     ],
   },

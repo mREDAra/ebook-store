@@ -29,37 +29,40 @@ export async function generatePersonalizedPDF(
   const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
   const fontRegular = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
-  // 5. Get the second page (copyright page) or first page as fallback
+  // 5. Stamp personalization on ALL pages
   const pages = pdfDoc.getPages();
-  const targetPage = pages.length > 1 ? pages[1] : pages[0];
-  const { width } = targetPage.getSize();
-  console.log('[PDF] Target page size:', width);
+  console.log('[PDF] Total pages to personalize:', pages.length);
 
-  // 6. Draw the personalization text (English only)
+  // 6. Draw the personalization text on every page (English only)
   const personalText = `Licensed to: ${buyerName}`;
   const emailText = `Email: ${buyerEmail}`;
 
   try {
-    // Draw name
-    const textWidth = font.widthOfTextAtSize(personalText, 14);
-    targetPage.drawText(personalText, {
-      x: (width - textWidth) / 2,
-      y: 50,
-      size: 14,
-      font: font,
-      color: rgb(0.83, 0.66, 0.26), // Gold color
-    });
+    for (let i = 0; i < pages.length; i++) {
+      const page = pages[i];
+      const { width } = page.getSize();
 
-    // Draw email
-    const emailWidth = fontRegular.widthOfTextAtSize(emailText, 11);
-    targetPage.drawText(emailText, {
-      x: (width - emailWidth) / 2,
-      y: 33,
-      size: 11,
-      font: fontRegular,
-      color: rgb(0.5, 0.5, 0.5),
-    });
-    console.log('[PDF] Text drawn successfully');
+      // Draw name
+      const textWidth = font.widthOfTextAtSize(personalText, 14);
+      page.drawText(personalText, {
+        x: (width - textWidth) / 2,
+        y: 50,
+        size: 14,
+        font: font,
+        color: rgb(0.83, 0.66, 0.26), // Gold color
+      });
+
+      // Draw email
+      const emailWidth = fontRegular.widthOfTextAtSize(emailText, 11);
+      page.drawText(emailText, {
+        x: (width - emailWidth) / 2,
+        y: 33,
+        size: 11,
+        font: fontRegular,
+        color: rgb(0.5, 0.5, 0.5),
+      });
+    }
+    console.log('[PDF] Personalization stamped on all', pages.length, 'pages');
   } catch (drawError) {
     console.error('[PDF] Error drawing text:', drawError);
   }
